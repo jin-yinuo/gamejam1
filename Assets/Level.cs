@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level : MonoBehaviour {
 
-    public float dropTime = 7f;
+    public float dropTime = 6f;
     public float top = 4F;
     public int screenLeft = -12;
     public int screenRight = 1;
@@ -14,7 +14,7 @@ public class Level : MonoBehaviour {
     public Transform ammo;
     public Enemy enemy;
     public GameObject clone;
-    int init_num = 3;
+    int init_num = 1;
     public static int numEnemies;
     int max_num = 10;
     int dim_x = 8; //screen dimensions
@@ -62,7 +62,7 @@ public class Level : MonoBehaviour {
     {
         x = r.Next(screenLeft, screenRight);
         Instantiate(platformLeft, new Vector3(x, top, 0), Quaternion.identity);
-        Instantiate(platformRight, new Vector3(x + 16, top, 0), Quaternion.identity);
+        Instantiate(platformRight, new Vector3(x + 12, top, 0), Quaternion.identity);
 
     }
 

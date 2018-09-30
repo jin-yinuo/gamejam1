@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
     int dirTime = 100;
     float i = 1f;
+    public double leftEdge = -8.75;
+    public double rightEddge = 8.75;
 
     public Level level;
     Transform tf;
@@ -42,6 +44,14 @@ public class Enemy : MonoBehaviour
         {
             --Level.numEnemies;
             Destroy(this.gameObject);
+        }
+
+        Vector3 p = tf.position;
+        Vector3 p2 = p;
+        p2.x = p2.x * -1;
+        if (p.x > rightEddge || p.x < leftEdge)
+        {
+            tf.position = p2;
         }
     }
 

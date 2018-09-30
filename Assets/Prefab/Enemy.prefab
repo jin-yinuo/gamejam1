@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114898240554391952}
   - component: {fileID: 50481092950971266}
   - component: {fileID: 58326623379581994}
+  - component: {fileID: 61494705008217062}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508915258156880}
   m_LocalRotation: {x: -0, y: -0, z: 0.0030971938, w: 0.99999523}
-  m_LocalPosition: {x: -5.240807, y: 0.5463995, z: 0}
-  m_LocalScale: {x: 0.102134004, y: 0.102335, z: 1}
+  m_LocalPosition: {x: -4.50772, y: -2.0628743, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -62,9 +63,24 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &58326623379581994
 CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508915258156880}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5
+--- !u!61 &61494705008217062
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,8 +92,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.2, y: 2.92}
+    newSize: {x: 10, y: 10}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 5
+  m_Size: {x: 2, y: 2.3}
+  m_EdgeRadius: 0
 --- !u!114 &114898240554391952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,6 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6ef72f99892be4c80e371e64b34e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 0}
+  bottom: -5.34
 --- !u!212 &212835860361734406
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -124,8 +152,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 974b42166799bff49a5fab7443a6fe58, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6a1a24859624df6489444d967a43e408, type: 3}
+  m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

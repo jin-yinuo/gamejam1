@@ -60,6 +60,10 @@ public class player : MonoBehaviour
         { //If we pushed the jump button down this frame...
             Shoot(); //Lets jump!
         }
+
+        Vector3 currVel = rb.velocity;
+        GetComponent<SpriteRenderer>().flipX = currVel.x > 0;
+ 
     }
 
     void MoveHorizontal(float input)
@@ -67,8 +71,6 @@ public class player : MonoBehaviour
         Vector2 moveVel = rb.velocity; //Get our current rigidbody's velocity
         moveVel.x = input * speed * Time.deltaTime; //Set the new x velocity to be the given input times our speed
                                                     //Note the multiply by Time.deltaTime to compensate for game clock
-
-        rb.velocity = moveVel; //Update our rigidbody's velocity
 
         rb.velocity = moveVel; //Update our rigidbody's velocity
 
@@ -129,6 +131,9 @@ public class player : MonoBehaviour
             numAmmo++;
             AmmoText.numAmmo = numAmmo;
             Destroy(collision.gameObject);
+        } else if (collision.gameObject.name.StartsWith("Enemy")) 
+        {
+            //Destroy(this.gameObject);
         }
     }
 
