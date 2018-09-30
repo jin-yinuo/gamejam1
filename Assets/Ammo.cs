@@ -29,7 +29,7 @@ public class Ammo : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if ((collision.gameObject.name.StartsWith("Bullet")) || (collision.gameObject.name.StartsWith("Enemy"))) {
-            Physics2D.IgnoreCollision(collision.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(collision.transform.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
         }
     }
 }

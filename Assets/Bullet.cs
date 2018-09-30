@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour {
     Rigidbody2D rb;
 
     public float moveSpeed = 50;
-    public float moveDir = 1;
+    public float moveDir = -1;
     public float v;
 
     Transform tf;

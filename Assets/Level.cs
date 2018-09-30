@@ -10,6 +10,8 @@ public class Level : MonoBehaviour {
     public int screenRight = 1;
     public Transform platformLeft;
     public Transform platformRight;
+    public int distance = 13;
+    float prevPlatform;
 
     public Transform ammo;
     public Enemy enemy;
@@ -61,8 +63,13 @@ public class Level : MonoBehaviour {
     void Drop()
     {
         x = r.Next(screenLeft, screenRight);
+        while (x == prevPlatform)
+        {
+            x = r.Next(screenLeft, screenRight);
+        }
         Instantiate(platformLeft, new Vector3(x, top, 0), Quaternion.identity);
         Instantiate(platformRight, new Vector3(x + 11, top, 0), Quaternion.identity);
+        prevPlatform = x;
 
     }
 

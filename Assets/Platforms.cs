@@ -42,7 +42,7 @@ public class Platforms : MonoBehaviour {
 
   
            // Vector3 p = tf.position;
-        if (tf.position.y < bottom)
+        if (tf.position.y < bottom-2)
         {
             Destroy(this.gameObject);
         }

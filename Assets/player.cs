@@ -9,6 +9,7 @@ public class player : MonoBehaviour
     public float speed = 30.0f; //Speed of the player
     public double leftEdge = -8.75;
     public double rightEddge = 8.75;
+    public double bottom = -5.34;
 
     //public float top = 4F;
     //public int screenLeft = -12;
@@ -25,6 +26,7 @@ public class player : MonoBehaviour
     public Transform platformRight;
 
     public Bullet bullet;
+    public bool paused = false;
 
 
     Transform tf;
@@ -64,7 +66,12 @@ public class player : MonoBehaviour
 
         Vector3 currVel = rb.velocity;
         GetComponent<SpriteRenderer>().flipX = currVel.x > 0;
- 
+
+        if (tf.position.y < bottom)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+
     }
 
     void MoveHorizontal(float input)
@@ -97,13 +104,17 @@ public class player : MonoBehaviour
     {
         if (numAmmo > 0)
         {
+            if (GetComponent<SpriteRenderer>().flipX)
+                bullet.moveDir = 1;
+            else
+                bullet.moveDir = -1;
             Vector3 currPos = tf.position;
             Vector3 currVel = rb.velocity;
             Instantiate(bullet, currPos, Quaternion.identity);
-            bullet.moveDir = (currVel.x > 0) ? 1 : -1;
             numAmmo--;
             AmmoText.numAmmo = numAmmo;
         }
+    
     }
 
     //void Drop()
@@ -114,7 +125,7 @@ public class player : MonoBehaviour
 
     //}
 
-   // bool IsGrounded()
+    // bool IsGrounded()
     //{
     //    float DistanceToTheGround = GetComponent<BoxCollider2D>().bounds.extents.y;
 
@@ -134,11 +145,25 @@ public class player : MonoBehaviour
             Destroy(collision.gameObject);
         } else if (collision.gameObject.name.StartsWith("Enemy")) 
         {
-            //Destroy(this.gameObject);
-            SceneManager.LoadScene("GameOver");
+            if (Lives.lives > 1)
+                Lives.lives--;
+                
+            else
+                SceneManager.LoadScene("GameOver");
+            Debug.Log(Lives.lives);
+            StartCoroutine(PauseCollision(2));
+            paused = true;
         }
     }
 
+    IEnumerator PauseCollision(float time)
+    {
+        yield return new WaitForSeconds(time);
+        paused = false;
+    }
+
+
+    //Destroy(this.gameObject);
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.name.StartsWith("Basic_Platform")) {
@@ -146,3 +171,5 @@ public class player : MonoBehaviour
         }
     }
 }
+
+  

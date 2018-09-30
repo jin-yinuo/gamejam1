@@ -13,6 +13,6 @@ public class AmmoText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        ammoText.text = "Ammo: " + numAmmo;
+        ammoText.text = "Balls: " + numAmmo;
 	}
 }

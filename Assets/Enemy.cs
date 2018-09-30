@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
         
         if (coll.gameObject.name.StartsWith("Enemy") || coll.gameObject.name.StartsWith("Ammo"))
         {
-            Physics2D.IgnoreCollision(coll.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(coll.transform.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
         }
     }
 }
