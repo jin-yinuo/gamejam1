@@ -15,13 +15,15 @@ public class player : MonoBehaviour
     //public float dropTime = 7f;
     System.Random r = new System.Random();
     public float x;
-  
+
+    public int numAmmo = 5;
 
     //MonoBehaviour object components
     public Transform platformLeft;
     public Transform platformRight;
 
     public Bullet bullet;
+
 
     Transform tf;
     Rigidbody2D rb;
@@ -88,19 +90,22 @@ public class player : MonoBehaviour
 
     void Shoot()
     {
-        Vector3 currPos = tf.position;
-        Vector3 currVel = rb.velocity;
-        Instantiate(bullet, currPos, Quaternion.identity);
-        bullet.moveDir = (currVel.x > 0) ? 1 : -1;
-      
-
+        if (numAmmo > 0)
+        {
+            Vector3 currPos = tf.position;
+            Vector3 currVel = rb.velocity;
+            Instantiate(bullet, currPos, Quaternion.identity);
+            bullet.moveDir = (currVel.x > 0) ? 1 : -1;
+            numAmmo--;
+            Debug.Log(numAmmo);
+        }
     }
 
     //void Drop()
     //{
-      //  x = r.Next(screenLeft, screenRight);
-       // Instantiate(platformLeft, new Vector3(x, top, 0), Quaternion.identity);
-       // Instantiate(platformRight, new Vector3(x + 16, top, 0), Quaternion.identity);
+    //  x = r.Next(screenLeft, screenRight);
+    // Instantiate(platformLeft, new Vector3(x, top, 0), Quaternion.identity);
+    // Instantiate(platformRight, new Vector3(x + 16, top, 0), Quaternion.identity);
 
     //}
 
@@ -108,5 +113,12 @@ public class player : MonoBehaviour
     //{/
 
     //}
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.gameObject.name == "Ammo") || (collision.gameObject.name == "Ammo (1)") || (collision.gameObject.name == "Ammo(Clone)"))
+        {
+            numAmmo++;
+            Destroy(collision.gameObject);
+        }
+    }
 }

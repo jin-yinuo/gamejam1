@@ -11,6 +11,7 @@ public class Level : MonoBehaviour {
     public Transform platformLeft;
     public Transform platformRight;
 
+    public Transform ammo;
     public Enemy enemy;
     public GameObject clone;
     int init_num = 3;
@@ -25,6 +26,7 @@ public class Level : MonoBehaviour {
     // Use this for initialization
     void Start () {
         InvokeRepeating("Drop", dropTime, dropTime);
+        InvokeRepeating("CreateAmmo", dropTime, dropTime);
 
         for (int i = 0; i < init_num; i++)
         {
@@ -63,5 +65,11 @@ public class Level : MonoBehaviour {
         Instantiate(platformLeft, new Vector3(x, top, 0), Quaternion.identity);
         Instantiate(platformRight, new Vector3(x + 16, top, 0), Quaternion.identity);
 
+    }
+
+    void CreateAmmo()
+    {
+        x = r.Next(-8 * 1000, 8 * 1000) / 1000f;
+        Instantiate(ammo, new Vector3(x, top+1, 0), Quaternion.identity);
     }
 }
