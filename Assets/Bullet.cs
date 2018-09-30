@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour {
 
         
         rb = GetComponent<Rigidbody2D>();
-        //rb.velocity = new Vector2(50, 0);
+        rb.velocity = new Vector2(v, 0);
     }
 
     // Use this for initialization

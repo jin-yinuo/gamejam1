@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
 
     void Move()
     {
+
         Vector3 playerPos = GameObject.Find("Player").transform.position;
         if ((playerPos.y - transform.position.y < 0.5) && (playerPos.y - transform.position.y > -0.5))
         {
