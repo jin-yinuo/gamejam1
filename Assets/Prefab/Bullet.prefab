@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212482014711593658}
   - component: {fileID: 50877622724996924}
   - component: {fileID: 114218569795467742}
-  - component: {fileID: 58790270063807696}
+  - component: {fileID: 70011887699264736}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -57,14 +57,14 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!58 &58790270063807696
-CircleCollider2D:
+--- !u!70 &70011887699264736
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,8 +76,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Size: {x: 1.0000002, y: 1.0000002}
+  m_Direction: 1
 --- !u!114 &114218569795467742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,6 +91,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   moveDir: -1
+  v: 0
+  left: -8.75
+  right: 8.75
 --- !u!212 &212482014711593658
 SpriteRenderer:
   m_ObjectHideFlags: 1

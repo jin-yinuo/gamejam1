@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
 
         if (tf.position.y < bottom)
         {
-            --level.numEnemies;
+            --Level.numEnemies;
             Destroy(this.gameObject);
         }
     }
