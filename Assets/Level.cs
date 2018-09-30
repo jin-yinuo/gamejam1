@@ -16,7 +16,7 @@ public class Level : MonoBehaviour {
     public GameObject clone;
     int init_num = 1;
     public static int numEnemies;
-    int max_num = 10;
+    int max_num = 6;
     int dim_x = 8; //screen dimensions
     int dim_y = 4; //screen dimensions
     System.Random r = new System.Random();
@@ -25,7 +25,7 @@ public class Level : MonoBehaviour {
     public int maxSpawnTime = 10; //number of seconds
     // Use this for initialization
     void Start () {
-        InvokeRepeating("Drop", dropTime, dropTime);
+        InvokeRepeating("Drop", 2F, dropTime);
         InvokeRepeating("CreateAmmo", dropTime, dropTime);
 
         for (int i = 0; i < init_num; i++)
@@ -62,7 +62,7 @@ public class Level : MonoBehaviour {
     {
         x = r.Next(screenLeft, screenRight);
         Instantiate(platformLeft, new Vector3(x, top, 0), Quaternion.identity);
-        Instantiate(platformRight, new Vector3(x + 12, top, 0), Quaternion.identity);
+        Instantiate(platformRight, new Vector3(x + 11, top, 0), Quaternion.identity);
 
     }
 

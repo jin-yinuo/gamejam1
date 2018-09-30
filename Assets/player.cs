@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
@@ -134,6 +135,7 @@ public class player : MonoBehaviour
         } else if (collision.gameObject.name.StartsWith("Enemy")) 
         {
             //Destroy(this.gameObject);
+            SceneManager.LoadScene("GameOver");
         }
     }
 

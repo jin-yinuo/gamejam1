@@ -98,4 +98,13 @@ public class Enemy : MonoBehaviour
     {
         return num_enemies;
     }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    { //On the frame this object's Collider collides with another collider...
+        
+        if (coll.gameObject.name.StartsWith("Enemy") || coll.gameObject.name.StartsWith("Ammo"))
+        {
+            Physics2D.IgnoreCollision(coll.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+    }
 }

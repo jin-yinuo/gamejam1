@@ -55,5 +55,10 @@ public class Bullet : MonoBehaviour {
             Destroy(coll.gameObject); //Destroy the enemy 
             Destroy(this.gameObject); 
         }
+        if (coll.gameObject.name.StartsWith ("Basic_Platform")) {
+            Physics2D.IgnoreCollision(coll.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
     }
+
+    
 }
