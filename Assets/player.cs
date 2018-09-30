@@ -17,6 +17,7 @@ public class player : MonoBehaviour
     public float x;
 
     public int numAmmo = 10;
+    bool isGrounded = true;
 
     //MonoBehaviour object components
     public Transform platformLeft;
@@ -83,7 +84,7 @@ public class player : MonoBehaviour
     void Jump()
     {
         //Replace "true" with "IsGrounded()" if you want to stop the infinite jumps
-        if (true)
+        if (isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce); //Add a upward force to our rigidbody
         }
@@ -110,17 +111,31 @@ public class player : MonoBehaviour
 
     //}
 
-    //bool IsGrounded()
-    //{/
+   // bool IsGrounded()
+    //{
+    //    float DistanceToTheGround = GetComponent<BoxCollider2D>().bounds.extents.y;
 
+    //    bool grounded = Physics.Raycast(transform.position, Vector3.down, DistanceToTheGround + 10f);
+    //    return grounded;
     //}
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.name.StartsWith("Basic_Platform")) {
+            isGrounded = true;
+        }
         if ((collision.gameObject.name == "Ammo") || (collision.gameObject.name == "Ammo (1)") || (collision.gameObject.name == "Ammo(Clone)"))
         {
             numAmmo++;
             AmmoText.numAmmo = numAmmo;
             Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.StartsWith("Basic_Platform")) {
+            isGrounded = false;
         }
     }
 }

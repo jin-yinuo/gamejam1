@@ -29,9 +29,9 @@ public class Bullet : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        float v = moveDir * moveSpeed;
+        //float v = moveDir * moveSpeed;
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(v, 0);
+        //rb.velocity = new Vector2(v, 0);
     }
 	
 	// Update is called once per frame
