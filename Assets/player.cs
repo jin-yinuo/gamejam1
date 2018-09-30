@@ -16,7 +16,7 @@ public class player : MonoBehaviour
     System.Random r = new System.Random();
     public float x;
 
-    public int numAmmo = 5;
+    public int numAmmo = 10;
 
     //MonoBehaviour object components
     public Transform platformLeft;
@@ -41,6 +41,7 @@ public class player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        AmmoText.numAmmo = numAmmo;
         //InvokeRepeating("Drop", dropTime, dropTime);
     }
 
@@ -97,7 +98,7 @@ public class player : MonoBehaviour
             Instantiate(bullet, currPos, Quaternion.identity);
             bullet.moveDir = (currVel.x > 0) ? 1 : -1;
             numAmmo--;
-            Debug.Log(numAmmo);
+            AmmoText.numAmmo = numAmmo;
         }
     }
 
@@ -118,6 +119,7 @@ public class player : MonoBehaviour
         if ((collision.gameObject.name == "Ammo") || (collision.gameObject.name == "Ammo (1)") || (collision.gameObject.name == "Ammo(Clone)"))
         {
             numAmmo++;
+            AmmoText.numAmmo = numAmmo;
             Destroy(collision.gameObject);
         }
     }
