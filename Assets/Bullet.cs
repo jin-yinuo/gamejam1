@@ -24,12 +24,12 @@ public class Bullet : MonoBehaviour {
 
         
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(v, 0);
+        //rb.velocity = new Vector2(50, 0);
     }
 
     // Use this for initialization
     void Start () {
-        //float v = moveDir * moveSpeed;
+        float v = moveDir * moveSpeed;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(v, 0);
     }
