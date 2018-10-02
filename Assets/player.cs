@@ -9,7 +9,6 @@ public class player : MonoBehaviour
     public float speed = 30.0f; //Speed of the player
     public double leftEdge = -8.75;
     public double rightEddge = 8.75;
-    public double bottom = -5.34;
 
     //public float top = 4F;
     //public int screenLeft = -12;
@@ -17,16 +16,19 @@ public class player : MonoBehaviour
     //public float dropTime = 7f;
     System.Random r = new System.Random();
     public float x;
+    public double bottom = -5.34;
 
     public int numAmmo = 10;
     bool isGrounded = true;
+
+    int num_lives = 3;
+    bool paused = false;
 
     //MonoBehaviour object components
     public Transform platformLeft;
     public Transform platformRight;
 
     public Bullet bullet;
-    public bool paused = false;
 
 
     Transform tf;
@@ -71,7 +73,6 @@ public class player : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
-
     }
 
     void MoveHorizontal(float input)
@@ -114,7 +115,6 @@ public class player : MonoBehaviour
             numAmmo--;
             AmmoText.numAmmo = numAmmo;
         }
-    
     }
 
     //void Drop()
@@ -125,7 +125,7 @@ public class player : MonoBehaviour
 
     //}
 
-    // bool IsGrounded()
+   // bool IsGrounded()
     //{
     //    float DistanceToTheGround = GetComponent<BoxCollider2D>().bounds.extents.y;
 
@@ -135,22 +135,22 @@ public class player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.StartsWith("Basic_Platform")) {
+        if ((collision.gameObject.name.StartsWith("Basic_Platform"))&&(transform.position.y - collision.transform.position.y > 0.8f)) {
             isGrounded = true;
+            Debug.Log(isGrounded);
         }
         if ((collision.gameObject.name == "Ammo") || (collision.gameObject.name == "Ammo (1)") || (collision.gameObject.name == "Ammo(Clone)"))
         {
             numAmmo++;
             AmmoText.numAmmo = numAmmo;
             Destroy(collision.gameObject);
-        } else if (collision.gameObject.name.StartsWith("Enemy")) 
+        } else if (collision.gameObject.name.StartsWith("Enemy")&&!paused) 
         {
+            //Destroy(this.gameObject);
             if (Lives.lives > 1)
                 Lives.lives--;
-                
             else
                 SceneManager.LoadScene("GameOver");
-            Debug.Log(Lives.lives);
             StartCoroutine(PauseCollision(2));
             paused = true;
         }
@@ -162,14 +162,11 @@ public class player : MonoBehaviour
         paused = false;
     }
 
-
-    //Destroy(this.gameObject);
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.name.StartsWith("Basic_Platform")) {
             isGrounded = false;
+            Debug.Log(isGrounded);
         }
     }
 }
-
-  
