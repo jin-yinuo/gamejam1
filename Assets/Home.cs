@@ -6,18 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class Home : MonoBehaviour {
 
-	// Use this for initialization
-	void Start ()
+    void Start ()
     {
 
     }
 
+    // void NextScene() loads the pretty screen after the home screen to start the gameplay
     public void NextScene()
     {
         SceneManager.LoadScene("pretty");
     }
 
-    // Update is called once per frame
     void Update () {
 		
 	}

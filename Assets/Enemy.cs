@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    static int num_enemies = 0;
-    float moveSpeed = 2f;
+    static int num_enemies = 0; //current number of enemies
+    float moveSpeed = 2f; 
     System.Random r = new System.Random();
     Rigidbody2D rb;
-    int dirTime = 100;
+    int dirTime = 100; //time before the enemy changes direction for the first time
     float i = 1f;
-    public double leftEdge = -8.75;
+    public double leftEdge = -8.75; //screen dimensions
     public double rightEddge = 8.75;
+    public double bottom = -5.34;
 
     public Level level;
     Transform tf;
 
-    public double bottom = -5.34;
-
-    // Use this for initialization
     private void Awake()
     {
         tf = GetComponent<Transform>();
@@ -30,7 +28,8 @@ public class Enemy : MonoBehaviour
         num_enemies++;
     }
 
-    // Update is called once per frame
+    //void Update() keeps track of the number of enemies per frame and calls Move() to allow the enemies to move every frame. 
+    //It also allows the enemeis to appear on the left side of the screen if they exit on the right and vice versa.
     void Update()
     {
         if ((this.transform.position.x < -8.4) || (this.transform.position.x > 8.4) ||
@@ -55,6 +54,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //void Move() allows enemies to follow the player if they are on the same platform level or to just move around randomly otherwise
     void Move()
     {
 
@@ -69,6 +69,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //void FollowPlayer() allows the enemies to follow the player if the enemy and the player are on the same platform level
     void FollowPlayer()
     {
         Vector3 playerPos = GameObject.Find("Player").transform.position;
@@ -78,6 +79,7 @@ public class Enemy : MonoBehaviour
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
     }
 
+    //void MoveAround() allows the enemies to move around at random
     void MoveAround()
     {
         if (i == 0)
@@ -94,14 +96,16 @@ public class Enemy : MonoBehaviour
 
     }
 
+    //int getNumEnemies() returns the number of enemies currently on the screen
     public int getNumEnemies()
     {
         return num_enemies;
     }
 
+    //void OnCollisionEnter2D(Collision2D coll) determines what happens when an enemy collides with other gameObjects.
+    //Collisions are ignored when colliding with another enemy or ammo.
     void OnCollisionEnter2D(Collision2D coll)
-    { //On the frame this object's Collider collides with another collider...
-        
+    { 
         if (coll.gameObject.name.StartsWith("Enemy") || coll.gameObject.name.StartsWith("Ammo"))
         {
             Physics2D.IgnoreCollision(coll.transform.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());

@@ -7,12 +7,12 @@ public class Bullet : MonoBehaviour {
     Rigidbody2D rb;
 
     public float moveSpeed = 50;
-    public float moveDir = -1;
-    public float v;
+    public float moveDir = -1; //-1 is left and 1 is right
+    public float v; //bullet's horizontal velocity
 
     Transform tf;
 
-    public double left = -8.75;
+    public double left = -8.75; //screen dimensions
     public double right = 8.75;
 
 
@@ -27,32 +27,27 @@ public class Bullet : MonoBehaviour {
         rb.velocity = new Vector2(v, 0);
     }
 
-    // Use this for initialization
     void Start () {
-        //float v = moveDir * moveSpeed;
         rb = GetComponent<Rigidbody2D>();
-        //rb.velocity = new Vector2(v, 0);
     }
 	
-	// Update is called once per frame
+	// void Update() destroys the gameObject if it exits the screen
 	void Update () {
-        //Vector2 moveVel = rb.velocity; //Get our current rigidbody's velocity
-        //moveVel.x = input * speed * Time.deltaTime; //Set the new x velocity to be the given input times our speed
-        //Note the multiply by Time.deltaTime to compensate for game clock
-        //rb.velocity = moveVel;
-
         if (tf.position.x > right || tf.position.x < left)
         {
             Destroy(this.gameObject);
         }
     }
 
+    // void OnCollisionEnter2D(Collision2D coll) determines what happens when the bullet collides with other gameObjects.
+    // If the bullet collides with an enemy, both the enemy and the bullet are destroyed
+    // Collisions are ignored if the bullet collides with a platform.
     void OnCollisionEnter2D(Collision2D coll)
-    { //On the frame this object's Collider collides with another collider...
+    { 
         if (coll.gameObject.name == "Enemy(Clone)")
-        {  //Check if we've hit a speed powerup
-            Debug.Log("Hit enemy"); //Lets let the console know we've hit a powerup
-            Destroy(coll.gameObject); //Destroy the enemy 
+        { 
+            Debug.Log("Hit enemy"); 
+            Destroy(coll.gameObject); 
             Destroy(this.gameObject); 
         }
         if (coll.gameObject.name.StartsWith ("Basic_Platform")) {

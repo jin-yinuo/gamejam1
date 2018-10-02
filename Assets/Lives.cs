@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class Lives : MonoBehaviour
 {
-    public static int lives = 3;
+    public static int lives = 3; //number of total lives
     public Transform heart3;
     public Transform heart2;
-    // Use this for initialization
+
     void Start()
     {
-        lives = 3;
+        lives = 3; //resets number of hearts to 3 everytime the game starts
     }
 
-    // Update is called once per frame
+    // void Update() is called once per frame and keeps track of how many hearts to display on the screen
     void Update()
     {
         if (lives == 2)
